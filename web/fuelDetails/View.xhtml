@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFuelDetailsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFuelDetailsLabel_FId}"/>
+                    <h:outputText value="#{fuelDetailsController.selected.FId}" title="#{bundle.ViewFuelDetailsTitle_FId}"/>
+                    <h:outputText value="#{bundle.ViewFuelDetailsLabel_FDate}"/>
+                    <h:outputText value="#{fuelDetailsController.selected.FDate}" title="#{bundle.ViewFuelDetailsTitle_FDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFuelDetailsLabel_qty}"/>
+                    <h:outputText value="#{fuelDetailsController.selected.qty}" title="#{bundle.ViewFuelDetailsTitle_qty}"/>
+                    <h:outputText value="#{bundle.ViewFuelDetailsLabel_cost}"/>
+                    <h:outputText value="#{fuelDetailsController.selected.cost}" title="#{bundle.ViewFuelDetailsTitle_cost}"/>
+                    <h:outputText value="#{bundle.ViewFuelDetailsLabel_DId}"/>
+                    <h:outputText value="#{fuelDetailsController.selected.DId}" title="#{bundle.ViewFuelDetailsTitle_DId}"/>
+                    <h:outputText value="#{bundle.ViewFuelDetailsLabel_VId}"/>
+                    <h:outputText value="#{fuelDetailsController.selected.VId}" title="#{bundle.ViewFuelDetailsTitle_VId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fuelDetailsController.destroyAndView}" value="#{bundle.ViewFuelDetailsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFuelDetailsEditLink}"/>
+                <br />
+                <h:commandLink action="#{fuelDetailsController.prepareCreate}" value="#{bundle.ViewFuelDetailsCreateLink}" />
+                <br />
+                <h:commandLink action="#{fuelDetailsController.prepareList}" value="#{bundle.ViewFuelDetailsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFuelDetailsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBookingsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_BId}" for="BId" />
+                    <h:inputText id="BId" value="#{bookingsController.selected.BId}" title="#{bundle.CreateBookingsTitle_BId}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_BId}"/>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_pickup}" for="pickup" />
+                    <h:inputText id="pickup" value="#{bookingsController.selected.pickup}" title="#{bundle.CreateBookingsTitle_pickup}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_pickup}"/>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_dropup}" for="dropup" />
+                    <h:inputText id="dropup" value="#{bookingsController.selected.dropup}" title="#{bundle.CreateBookingsTitle_dropup}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_dropup}"/>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_BDate}" for="BDate" />
+                    <h:inputText id="BDate" value="#{bookingsController.selected.BDate}" title="#{bundle.CreateBookingsTitle_BDate}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_BDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_kms}" for="kms" />
+                    <h:inputText id="kms" value="#{bookingsController.selected.kms}" title="#{bundle.CreateBookingsTitle_kms}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_kms}"/>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{bookingsController.selected.price}" title="#{bundle.CreateBookingsTitle_price}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_price}"/>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_DId}" for="DId" />
+                    <h:selectOneMenu id="DId" value="#{bookingsController.selected.DId}" title="#{bundle.CreateBookingsTitle_DId}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_DId}">
+                        <f:selectItems value="#{driverController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_UId}" for="UId" />
+                    <h:selectOneMenu id="UId" value="#{bookingsController.selected.UId}" title="#{bundle.CreateBookingsTitle_UId}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_UId}">
+                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_VId}" for="VId" />
+                    <h:selectOneMenu id="VId" value="#{bookingsController.selected.VId}" title="#{bundle.CreateBookingsTitle_VId}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_VId}">
+                        <f:selectItems value="#{vehicleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bookingsController.create}" value="#{bundle.CreateBookingsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bookingsController.prepareList}" value="#{bundle.CreateBookingsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBookingsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

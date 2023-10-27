@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRepairTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRepairLabel_RId}" for="RId" />
+                    <h:inputText id="RId" value="#{repairController.selected.RId}" title="#{bundle.EditRepairTitle_RId}" required="true" requiredMessage="#{bundle.EditRepairRequiredMessage_RId}"/>
+                    <h:outputLabel value="#{bundle.EditRepairLabel_GName}" for="GName" />
+                    <h:inputText id="GName" value="#{repairController.selected.GName}" title="#{bundle.EditRepairTitle_GName}" required="true" requiredMessage="#{bundle.EditRepairRequiredMessage_GName}"/>
+                    <h:outputLabel value="#{bundle.EditRepairLabel_RDate}" for="RDate" />
+                    <h:inputText id="RDate" value="#{repairController.selected.RDate}" title="#{bundle.EditRepairTitle_RDate}" required="true" requiredMessage="#{bundle.EditRepairRequiredMessage_RDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditRepairLabel_cost}" for="cost" />
+                    <h:inputText id="cost" value="#{repairController.selected.cost}" title="#{bundle.EditRepairTitle_cost}" required="true" requiredMessage="#{bundle.EditRepairRequiredMessage_cost}"/>
+                    <h:outputLabel value="#{bundle.EditRepairLabel_DId}" for="DId" />
+                    <h:selectOneMenu id="DId" value="#{repairController.selected.DId}" title="#{bundle.EditRepairTitle_DId}" required="true" requiredMessage="#{bundle.EditRepairRequiredMessage_DId}">
+                        <f:selectItems value="#{driverController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRepairLabel_VId}" for="VId" />
+                    <h:selectOneMenu id="VId" value="#{repairController.selected.VId}" title="#{bundle.EditRepairTitle_VId}" required="true" requiredMessage="#{bundle.EditRepairRequiredMessage_VId}">
+                        <f:selectItems value="#{vehicleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{repairController.update}" value="#{bundle.EditRepairSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRepairViewLink}"/>
+                <br />
+                <h:commandLink action="#{repairController.prepareList}" value="#{bundle.EditRepairShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRepairIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

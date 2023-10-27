@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRepairTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRepairLabel_RId}"/>
+                    <h:outputText value="#{repairController.selected.RId}" title="#{bundle.ViewRepairTitle_RId}"/>
+                    <h:outputText value="#{bundle.ViewRepairLabel_GName}"/>
+                    <h:outputText value="#{repairController.selected.GName}" title="#{bundle.ViewRepairTitle_GName}"/>
+                    <h:outputText value="#{bundle.ViewRepairLabel_RDate}"/>
+                    <h:outputText value="#{repairController.selected.RDate}" title="#{bundle.ViewRepairTitle_RDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRepairLabel_cost}"/>
+                    <h:outputText value="#{repairController.selected.cost}" title="#{bundle.ViewRepairTitle_cost}"/>
+                    <h:outputText value="#{bundle.ViewRepairLabel_DId}"/>
+                    <h:outputText value="#{repairController.selected.DId}" title="#{bundle.ViewRepairTitle_DId}"/>
+                    <h:outputText value="#{bundle.ViewRepairLabel_VId}"/>
+                    <h:outputText value="#{repairController.selected.VId}" title="#{bundle.ViewRepairTitle_VId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{repairController.destroyAndView}" value="#{bundle.ViewRepairDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRepairEditLink}"/>
+                <br />
+                <h:commandLink action="#{repairController.prepareCreate}" value="#{bundle.ViewRepairCreateLink}" />
+                <br />
+                <h:commandLink action="#{repairController.prepareList}" value="#{bundle.ViewRepairShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRepairIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

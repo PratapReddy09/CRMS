@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFuelDetailsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFuelDetailsLabel_FId}" for="FId" />
+                    <h:inputText id="FId" value="#{fuelDetailsController.selected.FId}" title="#{bundle.CreateFuelDetailsTitle_FId}" required="true" requiredMessage="#{bundle.CreateFuelDetailsRequiredMessage_FId}"/>
+                    <h:outputLabel value="#{bundle.CreateFuelDetailsLabel_FDate}" for="FDate" />
+                    <h:inputText id="FDate" value="#{fuelDetailsController.selected.FDate}" title="#{bundle.CreateFuelDetailsTitle_FDate}" required="true" requiredMessage="#{bundle.CreateFuelDetailsRequiredMessage_FDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFuelDetailsLabel_qty}" for="qty" />
+                    <h:inputText id="qty" value="#{fuelDetailsController.selected.qty}" title="#{bundle.CreateFuelDetailsTitle_qty}" required="true" requiredMessage="#{bundle.CreateFuelDetailsRequiredMessage_qty}"/>
+                    <h:outputLabel value="#{bundle.CreateFuelDetailsLabel_cost}" for="cost" />
+                    <h:inputText id="cost" value="#{fuelDetailsController.selected.cost}" title="#{bundle.CreateFuelDetailsTitle_cost}" required="true" requiredMessage="#{bundle.CreateFuelDetailsRequiredMessage_cost}"/>
+                    <h:outputLabel value="#{bundle.CreateFuelDetailsLabel_DId}" for="DId" />
+                    <h:selectOneMenu id="DId" value="#{fuelDetailsController.selected.DId}" title="#{bundle.CreateFuelDetailsTitle_DId}" required="true" requiredMessage="#{bundle.CreateFuelDetailsRequiredMessage_DId}">
+                        <f:selectItems value="#{driverController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFuelDetailsLabel_VId}" for="VId" />
+                    <h:selectOneMenu id="VId" value="#{fuelDetailsController.selected.VId}" title="#{bundle.CreateFuelDetailsTitle_VId}" required="true" requiredMessage="#{bundle.CreateFuelDetailsRequiredMessage_VId}">
+                        <f:selectItems value="#{vehicleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fuelDetailsController.create}" value="#{bundle.CreateFuelDetailsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{fuelDetailsController.prepareList}" value="#{bundle.CreateFuelDetailsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFuelDetailsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

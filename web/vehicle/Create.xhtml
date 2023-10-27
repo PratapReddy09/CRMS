@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateVehicleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateVehicleLabel_VId}" for="VId" />
+                    <h:inputText id="VId" value="#{vehicleController.selected.VId}" title="#{bundle.CreateVehicleTitle_VId}" required="true" requiredMessage="#{bundle.CreateVehicleRequiredMessage_VId}"/>
+                    <h:outputLabel value="#{bundle.CreateVehicleLabel_VName}" for="VName" />
+                    <h:inputText id="VName" value="#{vehicleController.selected.VName}" title="#{bundle.CreateVehicleTitle_VName}" required="true" requiredMessage="#{bundle.CreateVehicleRequiredMessage_VName}"/>
+                    <h:outputLabel value="#{bundle.CreateVehicleLabel_VType}" for="VType" />
+                    <h:inputText id="VType" value="#{vehicleController.selected.VType}" title="#{bundle.CreateVehicleTitle_VType}" required="true" requiredMessage="#{bundle.CreateVehicleRequiredMessage_VType}"/>
+                    <h:outputLabel value="#{bundle.CreateVehicleLabel_company}" for="company" />
+                    <h:inputText id="company" value="#{vehicleController.selected.company}" title="#{bundle.CreateVehicleTitle_company}" required="true" requiredMessage="#{bundle.CreateVehicleRequiredMessage_company}"/>
+                    <h:outputLabel value="#{bundle.CreateVehicleLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{vehicleController.selected.price}" title="#{bundle.CreateVehicleTitle_price}" required="true" requiredMessage="#{bundle.CreateVehicleRequiredMessage_price}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{vehicleController.create}" value="#{bundle.CreateVehicleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{vehicleController.prepareList}" value="#{bundle.CreateVehicleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateVehicleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
